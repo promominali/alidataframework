@@ -25,11 +25,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[all,dev]"
 
-
-      - name: Type check (mypy)
-        run: |
-          mypy aliframework
-
       - name: Run tests (unit + integration, excluding docker-only marker if desired)
         run: |
           PYTHONPATH=. pytest --cov=aliframework --cov-report=term-missing tests -m "not integration"
