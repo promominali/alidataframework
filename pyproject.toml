@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aliframework"
+version = "0.1.0"
+description = "Unified connection helpers for DBs, APIs, SFTP, GCP, and Vault"
+authors = [
+  { name = "Ali", email = "ali@example.com" }
+]
+readme = "aliframework/README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+dependencies = [
+  "requests>=2.32.0",
+]
+
+[project.optional-dependencies]
+# Install all batteries:
+all = [
+  "psycopg2-binary",
+  "pymysql",
+  "pyodbc",
+  "oracledb",
+  "pymongo",
+  "paramiko",
+  "google-cloud-storage",
+  "google-cloud-bigquery",
+  "google-cloud-dataproc",
+  "google-api-python-client",
+  "pandas",
+  "pyspark",
+  "hvac",
+]
+
+db = ["psycopg2-binary", "pymysql", "pyodbc", "oracledb"]
+nosql = ["pymongo"]
+sftp = ["paramiko"]
+gcp = ["google-cloud-storage", "google-cloud-bigquery", "google-cloud-dataproc", "google-api-python-client", "pandas", "pyspark"]
+secrets = ["hvac"]
+
+dev = ["pytest", "pytest-mock", "pytest-cov", "mypy", "ruff"]
+
+[tool.setuptools]
+packages = ["aliframework"]
+
+[tool.mypy]
+packages = ["aliframework"]
+python_version = "3.10"
+ignore_missing_imports = true
+strict = true
+
+[tool.ruff]
+line-length = 100
+src = ["aliframework", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.pytest.ini_options]
+markers = [
+  "integration: mark tests as integration tests",
+]
