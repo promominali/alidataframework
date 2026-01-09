@@ -1,4 +1,4 @@
-# aliframework
+# alidataframework
 
 A Python framework of composable helpers to connect to:
 
